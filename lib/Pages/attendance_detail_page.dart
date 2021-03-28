@@ -4,6 +4,7 @@ import 'package:school/Controllers/attendance_controller.dart';
 import 'package:school/Utils/global.dart';
 import 'package:school/Utils/models.dart';
 import 'package:school/Widgets/attendance_details.dart';
+import 'package:school/Widgets/drawer.dart';
 
 class AttendanceDetailPage extends StatelessWidget {
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
@@ -15,12 +16,13 @@ class AttendanceDetailPage extends StatelessWidget {
       key: _scaffoldKey,
       appBar: _appBar(context),
       body: _body(context),
+      drawer: _drawer(),
     );
   }
 
   _appBar(BuildContext context) => AppBar(
         title: Text(
-          'Home',
+          'Attendance',
           style: Theme.of(context)
               .textTheme
               .subtitle2
@@ -41,6 +43,8 @@ class AttendanceDetailPage extends StatelessWidget {
           ),
         ),
       );
+
+  _drawer() => CustomDrawer();
 
   _body(BuildContext context) => Container(
         child: SingleChildScrollView(

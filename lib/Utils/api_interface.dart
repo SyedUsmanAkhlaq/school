@@ -2,9 +2,29 @@ import 'package:dio/dio.dart';
 import 'package:school/Utils/models.dart';
 
 class APIInterface {
-  static Future<Parent> parentData() async {
+  static Future<String> login(String email, String password) async {
     try {
-      var url = "https://ramom.logicsfort.com/api/user/parentprofile?id=1";
+      var url = 'http://ramom.logicsfort.com/api/user/login';
+      Response response = await Dio().post(
+        url,
+        data: FormData.fromMap({'email': email, 'password': password}),
+      );
+      // Response response = await Dio().post('',)
+      print(response.statusCode);
+      if (response.data['success']) {
+        print(response.data['id_token']);
+        return response.data['id_token'];
+      } else
+        return null;
+    } catch (e, s) {
+      print("API Interface: Login: $e: $s");
+      return null;
+    }
+  }
+
+  static Future<Parent> parentData(String id) async {
+    try {
+      var url = "https://ramom.logicsfort.com/api/user/parentprofile?id=$id";
       // print(url);
       Response response = await Dio().get(url);
       if (response.statusCode == 200) {
@@ -16,14 +36,15 @@ class APIInterface {
         return null;
     } catch (e, s) {
       print("API Interface: ParentData: $e: $s");
-      // return Response.error(errorMessage: e.toString());
       return Response().data;
     }
   }
 
-  static Future<List<Children>> childrenData() async {
+  static Future<List<Children>> childrenData(String parentID) async {
     try {
-      var url = "https://ramom.logicsfort.com/api/user/parentprofile?id=1";
+      print('This is parentID: $parentID');
+      var url =
+          "https://ramom.logicsfort.com/api/user/parentprofile?id=$parentID";
       // print(url);
       Response response = await Dio().get(url);
       if (response.statusCode == 200) {

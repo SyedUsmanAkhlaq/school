@@ -1,5 +1,6 @@
 import 'package:get/get.dart';
 import 'package:school/Utils/api_interface.dart';
+import 'package:school/Utils/global.dart';
 import 'package:school/Utils/models.dart';
 
 class ChildrenController extends GetxController {
@@ -20,7 +21,7 @@ class ChildrenController extends GetxController {
   }
 
   Future loadChildrenData() async {
-    _children = await APIInterface.childrenData();
+    _children = await APIInterface.childrenData(token['loggedin_userid']);
     // printInfo(info: '$_children');
     return _children;
   }
