@@ -192,7 +192,7 @@ class AttendanceHistoryWidget extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Text(
-            '2020',
+            history.date,
             style: Theme.of(context).textTheme.subtitle1,
           ),
           Text(

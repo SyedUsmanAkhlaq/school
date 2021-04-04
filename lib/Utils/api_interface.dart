@@ -1,4 +1,5 @@
 import 'package:dio/dio.dart';
+import 'package:school/Utils/constants.dart';
 import 'package:school/Utils/models.dart';
 
 class APIInterface {
@@ -9,10 +10,8 @@ class APIInterface {
         url,
         data: FormData.fromMap({'email': email, 'password': password}),
       );
-      // Response response = await Dio().post('',)
       print(response.statusCode);
       if (response.data['success']) {
-        print(response.data['id_token']);
         return response.data['id_token'];
       } else
         return null;
@@ -36,7 +35,7 @@ class APIInterface {
         return null;
     } catch (e, s) {
       print("API Interface: ParentData: $e: $s");
-      return Response().data;
+      return null;
     }
   }
 
@@ -65,9 +64,10 @@ class APIInterface {
     }
   }
 
-  static Future<Child> childData() async {
+  static Future<Child> childData(String studentID) async {
     try {
-      var url = "https://ramom.logicsfort.com/api/user/studentprofile?id=1";
+      var url =
+          "https://ramom.logicsfort.com/api/user/studentprofile?id=$studentID";
       // print(url);
       Response response = await Dio().get(url);
       if (response.statusCode == 200) {
@@ -86,10 +86,10 @@ class APIInterface {
     }
   }
 
-  static Future<StudentAttendance> getAttendance() async {
+  static Future<StudentAttendance> getAttendance(String studentID) async {
     try {
       var url =
-          "http://ramom.logicsfort.com/api/user/studentAttendance?student_id=6";
+          "http://ramom.logicsfort.com/api/user/studentAttendance?student_id=$studentID";
       // print(url);
       Response response = await Dio().get(url);
       if (response.statusCode == 200) {
@@ -113,7 +113,7 @@ class APIInterface {
   static Future<List<AttendanceHistory>> attendanceHistory() async {
     try {
       var url =
-          "http://ramom.logicsfort.com/api/user/studentAttendance?student_id=6";
+          "http://ramom.logicsfort.com/api/user/studentAttendance?student_id=6&timestamp=${DateTime.now().year}-${kMonths[DateTime.now().month - 1]}";
       print(url);
       Response response = await Dio().get(url);
       if (response.statusCode == 200) {
@@ -129,6 +129,26 @@ class APIInterface {
       print("API Interface: Attendance History: $e: $s");
       return null;
       // return Response.error(errorMessage: e.toString());
+    }
+  }
+
+  static Future<List<Voucher>> getVouchers(String studentID) async {
+    try {
+      var url =
+          "https://ramom.logicsfort.com/api/user/studentfee?id=$studentID";
+      print(url);
+      Response response = await Dio().get(url);
+      if (response.statusCode == 200) {
+        List<Voucher> vouchers = [];
+        response.data['fee_detail']?.forEach((element) {
+          vouchers.add(Voucher.fromJSON(element));
+        });
+        return vouchers;
+      } else
+        return null;
+    } catch (e, s) {
+      print("API Interface: Attendance History: $e: $s");
+      return null;
     }
   }
 }

@@ -1,0 +1,784 @@
+define(['dart_sdk'], (function load__packages__school__Utils__models_dart(dart_sdk) {
+  'use strict';
+  const core = dart_sdk.core;
+  const dart = dart_sdk.dart;
+  const dartx = dart_sdk.dartx;
+  var models = Object.create(dart.library);
+  var $_get = dartx._get;
+  dart._checkModuleNullSafetyMode(false);
+  var T = {
+    StringL: () => (T.StringL = dart.constFn(dart.legacy(core.String)))()
+  };
+  var T$Eval = Object.assign({
+    _: () => T$Eval
+  }, T);
+  var S = {
+    _: () => S
+  };
+  var S$Eval = Object.assign({
+    _: () => S$Eval
+  }, S);
+  const CT = Object.create({
+    _: () => (C, CT)
+  });
+  var C = [];
+  var I = ["package:school/Utils/models.dart"];
+  var parentID = dart.privateName(models, "Parent.parentID");
+  var name = dart.privateName(models, "Parent.name");
+  var relation = dart.privateName(models, "Parent.relation");
+  var fatherName = dart.privateName(models, "Parent.fatherName");
+  var motherName = dart.privateName(models, "Parent.motherName");
+  var occupation = dart.privateName(models, "Parent.occupation");
+  var income = dart.privateName(models, "Parent.income");
+  var education = dart.privateName(models, "Parent.education");
+  var email = dart.privateName(models, "Parent.email");
+  var phone = dart.privateName(models, "Parent.phone");
+  var address = dart.privateName(models, "Parent.address");
+  var city = dart.privateName(models, "Parent.city");
+  var state = dart.privateName(models, "Parent.state");
+  var branchID = dart.privateName(models, "Parent.branchID");
+  var parentImageURL = dart.privateName(models, "Parent.parentImageURL");
+  var facebookURL = dart.privateName(models, "Parent.facebookURL");
+  var linkedinURL = dart.privateName(models, "Parent.linkedinURL");
+  var twitterURL = dart.privateName(models, "Parent.twitterURL");
+  var createdAt = dart.privateName(models, "Parent.createdAt");
+  var updatedAt = dart.privateName(models, "Parent.updatedAt");
+  var active = dart.privateName(models, "Parent.active");
+  var roleID = dart.privateName(models, "Parent.roleID");
+  var userName = dart.privateName(models, "Parent.userName");
+  var loginID = dart.privateName(models, "Parent.loginID");
+  var role = dart.privateName(models, "Parent.role");
+  models.Parent = class Parent extends core.Object {
+    get parentID() {
+      return this[parentID];
+    }
+    set parentID(value) {
+      this[parentID] = value;
+    }
+    get name() {
+      return this[name];
+    }
+    set name(value) {
+      this[name] = value;
+    }
+    get relation() {
+      return this[relation];
+    }
+    set relation(value) {
+      this[relation] = value;
+    }
+    get fatherName() {
+      return this[fatherName];
+    }
+    set fatherName(value) {
+      this[fatherName] = value;
+    }
+    get motherName() {
+      return this[motherName];
+    }
+    set motherName(value) {
+      this[motherName] = value;
+    }
+    get occupation() {
+      return this[occupation];
+    }
+    set occupation(value) {
+      this[occupation] = value;
+    }
+    get income() {
+      return this[income];
+    }
+    set income(value) {
+      this[income] = value;
+    }
+    get education() {
+      return this[education];
+    }
+    set education(value) {
+      this[education] = value;
+    }
+    get email() {
+      return this[email];
+    }
+    set email(value) {
+      this[email] = value;
+    }
+    get phone() {
+      return this[phone];
+    }
+    set phone(value) {
+      this[phone] = value;
+    }
+    get address() {
+      return this[address];
+    }
+    set address(value) {
+      this[address] = value;
+    }
+    get city() {
+      return this[city];
+    }
+    set city(value) {
+      this[city] = value;
+    }
+    get state() {
+      return this[state];
+    }
+    set state(value) {
+      this[state] = value;
+    }
+    get branchID() {
+      return this[branchID];
+    }
+    set branchID(value) {
+      this[branchID] = value;
+    }
+    get parentImageURL() {
+      return this[parentImageURL];
+    }
+    set parentImageURL(value) {
+      this[parentImageURL] = value;
+    }
+    get facebookURL() {
+      return this[facebookURL];
+    }
+    set facebookURL(value) {
+      this[facebookURL] = value;
+    }
+    get linkedinURL() {
+      return this[linkedinURL];
+    }
+    set linkedinURL(value) {
+      this[linkedinURL] = value;
+    }
+    get twitterURL() {
+      return this[twitterURL];
+    }
+    set twitterURL(value) {
+      this[twitterURL] = value;
+    }
+    get createdAt() {
+      return this[createdAt];
+    }
+    set createdAt(value) {
+      this[createdAt] = value;
+    }
+    get updatedAt() {
+      return this[updatedAt];
+    }
+    set updatedAt(value) {
+      this[updatedAt] = value;
+    }
+    get active() {
+      return this[active];
+    }
+    set active(value) {
+      this[active] = value;
+    }
+    get roleID() {
+      return this[roleID];
+    }
+    set roleID(value) {
+      this[roleID] = value;
+    }
+    get userName() {
+      return this[userName];
+    }
+    set userName(value) {
+      this[userName] = value;
+    }
+    get loginID() {
+      return this[loginID];
+    }
+    set loginID(value) {
+      this[loginID] = value;
+    }
+    get role() {
+      return this[role];
+    }
+    set role(value) {
+      this[role] = value;
+    }
+  };
+  (models.Parent.fromJSON = function(json) {
+    this[parentID] = T.StringL().as(json[$_get]("id"));
+    this[name] = T.StringL().as(json[$_get]("name"));
+    this[relation] = T.StringL().as(json[$_get]("relation"));
+    this[fatherName] = T.StringL().as(json[$_get]("father_name"));
+    this[motherName] = T.StringL().as(json[$_get]("mother_name"));
+    this[occupation] = T.StringL().as(json[$_get]("occupation"));
+    this[income] = T.StringL().as(json[$_get]("income"));
+    this[education] = T.StringL().as(json[$_get]("education"));
+    this[email] = T.StringL().as(json[$_get]("email"));
+    this[phone] = T.StringL().as(json[$_get]("mobileno"));
+    this[address] = T.StringL().as(json[$_get]("address"));
+    this[city] = T.StringL().as(json[$_get]("city"));
+    this[state] = T.StringL().as(json[$_get]("state"));
+    this[branchID] = T.StringL().as(json[$_get]("branch_id"));
+    this[parentImageURL] = T.StringL().as(json[$_get]("phone"));
+    this[facebookURL] = T.StringL().as(json[$_get]("facebook_url"));
+    this[linkedinURL] = T.StringL().as(json[$_get]("linkedin_url"));
+    this[twitterURL] = T.StringL().as(json[$_get]("twitter_url"));
+    this[createdAt] = T.StringL().as(json[$_get]("created_at"));
+    this[updatedAt] = T.StringL().as(json[$_get]("updated_at"));
+    this[active] = T.StringL().as(json[$_get]("active"));
+    this[roleID] = T.StringL().as(json[$_get]("role_id"));
+    this[userName] = T.StringL().as(json[$_get]("username"));
+    this[loginID] = T.StringL().as(json[$_get]("login_id"));
+    this[role] = T.StringL().as(json[$_get]("role"));
+    ;
+  }).prototype = models.Parent.prototype;
+  dart.addTypeTests(models.Parent);
+  dart.addTypeCaches(models.Parent);
+  dart.setLibraryUri(models.Parent, I[0]);
+  dart.setFieldSignature(models.Parent, () => ({
+    __proto__: dart.getFields(models.Parent.__proto__),
+    parentID: dart.fieldType(dart.legacy(core.String)),
+    name: dart.fieldType(dart.legacy(core.String)),
+    relation: dart.fieldType(dart.legacy(core.String)),
+    fatherName: dart.fieldType(dart.legacy(core.String)),
+    motherName: dart.fieldType(dart.legacy(core.String)),
+    occupation: dart.fieldType(dart.legacy(core.String)),
+    income: dart.fieldType(dart.legacy(core.String)),
+    education: dart.fieldType(dart.legacy(core.String)),
+    email: dart.fieldType(dart.legacy(core.String)),
+    phone: dart.fieldType(dart.legacy(core.String)),
+    address: dart.fieldType(dart.legacy(core.String)),
+    city: dart.fieldType(dart.legacy(core.String)),
+    state: dart.fieldType(dart.legacy(core.String)),
+    branchID: dart.fieldType(dart.legacy(core.String)),
+    parentImageURL: dart.fieldType(dart.legacy(core.String)),
+    facebookURL: dart.fieldType(dart.legacy(core.String)),
+    linkedinURL: dart.fieldType(dart.legacy(core.String)),
+    twitterURL: dart.fieldType(dart.legacy(core.String)),
+    createdAt: dart.fieldType(dart.legacy(core.String)),
+    updatedAt: dart.fieldType(dart.legacy(core.String)),
+    active: dart.fieldType(dart.legacy(core.String)),
+    roleID: dart.fieldType(dart.legacy(core.String)),
+    userName: dart.fieldType(dart.legacy(core.String)),
+    loginID: dart.fieldType(dart.legacy(core.String)),
+    role: dart.fieldType(dart.legacy(core.String))
+  }));
+  var childID = dart.privateName(models, "Children.childID");
+  var childImageURL = dart.privateName(models, "Children.childImageURL");
+  var childUserName = dart.privateName(models, "Children.childUserName");
+  var childSection = dart.privateName(models, "Children.childSection");
+  var childClass = dart.privateName(models, "Children.childClass");
+  models.Children = class Children extends core.Object {
+    get childID() {
+      return this[childID];
+    }
+    set childID(value) {
+      this[childID] = value;
+    }
+    get childImageURL() {
+      return this[childImageURL];
+    }
+    set childImageURL(value) {
+      this[childImageURL] = value;
+    }
+    get childUserName() {
+      return this[childUserName];
+    }
+    set childUserName(value) {
+      this[childUserName] = value;
+    }
+    get childSection() {
+      return this[childSection];
+    }
+    set childSection(value) {
+      this[childSection] = value;
+    }
+    get childClass() {
+      return this[childClass];
+    }
+    set childClass(value) {
+      this[childClass] = value;
+    }
+  };
+  (models.Children.fromJSON = function(json) {
+    this[childID] = T.StringL().as(json[$_get]("id"));
+    this[childImageURL] = T.StringL().as(json[$_get]("photo"));
+    this[childSection] = T.StringL().as(json[$_get]("section_name"));
+    this[childClass] = T.StringL().as(json[$_get]("class_name"));
+    this[childUserName] = T.StringL().as(json[$_get]("fullname"));
+    ;
+  }).prototype = models.Children.prototype;
+  dart.addTypeTests(models.Children);
+  dart.addTypeCaches(models.Children);
+  dart.setLibraryUri(models.Children, I[0]);
+  dart.setFieldSignature(models.Children, () => ({
+    __proto__: dart.getFields(models.Children.__proto__),
+    childID: dart.fieldType(dart.legacy(core.String)),
+    childImageURL: dart.fieldType(dart.legacy(core.String)),
+    childUserName: dart.fieldType(dart.legacy(core.String)),
+    childSection: dart.fieldType(dart.legacy(core.String)),
+    childClass: dart.fieldType(dart.legacy(core.String))
+  }));
+  var id = dart.privateName(models, "Child.id");
+  var registerNo = dart.privateName(models, "Child.registerNo");
+  var admissionDate = dart.privateName(models, "Child.admissionDate");
+  var firstName = dart.privateName(models, "Child.firstName");
+  var lastName = dart.privateName(models, "Child.lastName");
+  var gender = dart.privateName(models, "Child.gender");
+  var birthday = dart.privateName(models, "Child.birthday");
+  var religion = dart.privateName(models, "Child.religion");
+  var caste = dart.privateName(models, "Child.caste");
+  var bloodGroup = dart.privateName(models, "Child.bloodGroup");
+  var motherTongue = dart.privateName(models, "Child.motherTongue");
+  var currentAddress = dart.privateName(models, "Child.currentAddress");
+  var permanentAddress = dart.privateName(models, "Child.permanentAddress");
+  var city$ = dart.privateName(models, "Child.city");
+  var state$ = dart.privateName(models, "Child.state");
+  var mobileNo = dart.privateName(models, "Child.mobileNo");
+  var categoryID = dart.privateName(models, "Child.categoryID");
+  var email$ = dart.privateName(models, "Child.email");
+  var parentID$ = dart.privateName(models, "Child.parentID");
+  var routeID = dart.privateName(models, "Child.routeID");
+  var vehicleID = dart.privateName(models, "Child.vehicleID");
+  var hostelID = dart.privateName(models, "Child.hostelID");
+  var roomID = dart.privateName(models, "Child.roomID");
+  var previousDetails = dart.privateName(models, "Child.previousDetails");
+  var imageURL = dart.privateName(models, "Child.imageURL");
+  var createdAt$ = dart.privateName(models, "Child.createdAt");
+  var updatedAt$ = dart.privateName(models, "Child.updatedAt");
+  var userName$ = dart.privateName(models, "Child.userName");
+  var active$ = dart.privateName(models, "Child.active");
+  var classID = dart.privateName(models, "Child.classID");
+  var sectionID = dart.privateName(models, "Child.sectionID");
+  var enrollID = dart.privateName(models, "Child.enrollID");
+  var role$ = dart.privateName(models, "Child.role");
+  var branchID$ = dart.privateName(models, "Child.branchID");
+  var sessionID = dart.privateName(models, "Child.sessionID");
+  var className = dart.privateName(models, "Child.className");
+  var sectionName = dart.privateName(models, "Child.sectionName");
+  var categoryName = dart.privateName(models, "Child.categoryName");
+  models.Child = class Child extends core.Object {
+    get id() {
+      return this[id];
+    }
+    set id(value) {
+      this[id] = value;
+    }
+    get registerNo() {
+      return this[registerNo];
+    }
+    set registerNo(value) {
+      this[registerNo] = value;
+    }
+    get admissionDate() {
+      return this[admissionDate];
+    }
+    set admissionDate(value) {
+      this[admissionDate] = value;
+    }
+    get firstName() {
+      return this[firstName];
+    }
+    set firstName(value) {
+      this[firstName] = value;
+    }
+    get lastName() {
+      return this[lastName];
+    }
+    set lastName(value) {
+      this[lastName] = value;
+    }
+    get gender() {
+      return this[gender];
+    }
+    set gender(value) {
+      this[gender] = value;
+    }
+    get birthday() {
+      return this[birthday];
+    }
+    set birthday(value) {
+      this[birthday] = value;
+    }
+    get religion() {
+      return this[religion];
+    }
+    set religion(value) {
+      this[religion] = value;
+    }
+    get caste() {
+      return this[caste];
+    }
+    set caste(value) {
+      this[caste] = value;
+    }
+    get bloodGroup() {
+      return this[bloodGroup];
+    }
+    set bloodGroup(value) {
+      this[bloodGroup] = value;
+    }
+    get motherTongue() {
+      return this[motherTongue];
+    }
+    set motherTongue(value) {
+      this[motherTongue] = value;
+    }
+    get currentAddress() {
+      return this[currentAddress];
+    }
+    set currentAddress(value) {
+      this[currentAddress] = value;
+    }
+    get permanentAddress() {
+      return this[permanentAddress];
+    }
+    set permanentAddress(value) {
+      this[permanentAddress] = value;
+    }
+    get city() {
+      return this[city$];
+    }
+    set city(value) {
+      this[city$] = value;
+    }
+    get state() {
+      return this[state$];
+    }
+    set state(value) {
+      this[state$] = value;
+    }
+    get mobileNo() {
+      return this[mobileNo];
+    }
+    set mobileNo(value) {
+      this[mobileNo] = value;
+    }
+    get categoryID() {
+      return this[categoryID];
+    }
+    set categoryID(value) {
+      this[categoryID] = value;
+    }
+    get email() {
+      return this[email$];
+    }
+    set email(value) {
+      this[email$] = value;
+    }
+    get parentID() {
+      return this[parentID$];
+    }
+    set parentID(value) {
+      this[parentID$] = value;
+    }
+    get routeID() {
+      return this[routeID];
+    }
+    set routeID(value) {
+      this[routeID] = value;
+    }
+    get vehicleID() {
+      return this[vehicleID];
+    }
+    set vehicleID(value) {
+      this[vehicleID] = value;
+    }
+    get hostelID() {
+      return this[hostelID];
+    }
+    set hostelID(value) {
+      this[hostelID] = value;
+    }
+    get roomID() {
+      return this[roomID];
+    }
+    set roomID(value) {
+      this[roomID] = value;
+    }
+    get previousDetails() {
+      return this[previousDetails];
+    }
+    set previousDetails(value) {
+      this[previousDetails] = value;
+    }
+    get imageURL() {
+      return this[imageURL];
+    }
+    set imageURL(value) {
+      this[imageURL] = value;
+    }
+    get createdAt() {
+      return this[createdAt$];
+    }
+    set createdAt(value) {
+      this[createdAt$] = value;
+    }
+    get updatedAt() {
+      return this[updatedAt$];
+    }
+    set updatedAt(value) {
+      this[updatedAt$] = value;
+    }
+    get userName() {
+      return this[userName$];
+    }
+    set userName(value) {
+      this[userName$] = value;
+    }
+    get active() {
+      return this[active$];
+    }
+    set active(value) {
+      this[active$] = value;
+    }
+    get classID() {
+      return this[classID];
+    }
+    set classID(value) {
+      this[classID] = value;
+    }
+    get sectionID() {
+      return this[sectionID];
+    }
+    set sectionID(value) {
+      this[sectionID] = value;
+    }
+    get enrollID() {
+      return this[enrollID];
+    }
+    set enrollID(value) {
+      this[enrollID] = value;
+    }
+    get role() {
+      return this[role$];
+    }
+    set role(value) {
+      this[role$] = value;
+    }
+    get branchID() {
+      return this[branchID$];
+    }
+    set branchID(value) {
+      this[branchID$] = value;
+    }
+    get sessionID() {
+      return this[sessionID];
+    }
+    set sessionID(value) {
+      this[sessionID] = value;
+    }
+    get className() {
+      return this[className];
+    }
+    set className(value) {
+      this[className] = value;
+    }
+    get sectionName() {
+      return this[sectionName];
+    }
+    set sectionName(value) {
+      this[sectionName] = value;
+    }
+    get categoryName() {
+      return this[categoryName];
+    }
+    set categoryName(value) {
+      this[categoryName] = value;
+    }
+  };
+  (models.Child.fromJSON = function(json) {
+    this[id] = T.StringL().as(json[$_get]("id"));
+    this[registerNo] = T.StringL().as(json[$_get]("register_no"));
+    this[admissionDate] = T.StringL().as(json[$_get]("admission_date"));
+    this[firstName] = T.StringL().as(json[$_get]("first_name"));
+    this[lastName] = T.StringL().as(json[$_get]("last_name"));
+    this[gender] = T.StringL().as(json[$_get]("gender"));
+    this[birthday] = T.StringL().as(json[$_get]("birthday"));
+    this[religion] = T.StringL().as(json[$_get]("religion"));
+    this[caste] = T.StringL().as(json[$_get]("caste"));
+    this[bloodGroup] = T.StringL().as(json[$_get]("blood_group"));
+    this[motherTongue] = T.StringL().as(json[$_get]("mother_tongue"));
+    this[currentAddress] = T.StringL().as(json[$_get]("current_address"));
+    this[permanentAddress] = T.StringL().as(json[$_get]("permanent_address"));
+    this[city$] = T.StringL().as(json[$_get]("city"));
+    this[state$] = T.StringL().as(json[$_get]("state"));
+    this[mobileNo] = T.StringL().as(json[$_get]("mobileno"));
+    this[categoryID] = T.StringL().as(json[$_get]("category_id"));
+    this[email$] = T.StringL().as(json[$_get]("email"));
+    this[parentID$] = T.StringL().as(json[$_get]("parent_id"));
+    this[routeID] = T.StringL().as(json[$_get]("route_id"));
+    this[vehicleID] = T.StringL().as(json[$_get]("vehicle_id"));
+    this[hostelID] = T.StringL().as(json[$_get]("hostel_id"));
+    this[roomID] = T.StringL().as(json[$_get]("room_id"));
+    this[previousDetails] = T.StringL().as(json[$_get]("previous_details"));
+    this[imageURL] = T.StringL().as(json[$_get]("photo"));
+    this[createdAt$] = T.StringL().as(json[$_get]("created_at"));
+    this[updatedAt$] = T.StringL().as(json[$_get]("updated_at"));
+    this[userName$] = T.StringL().as(json[$_get]("username"));
+    this[active$] = T.StringL().as(json[$_get]("active"));
+    this[classID] = T.StringL().as(json[$_get]("class_id"));
+    this[sectionID] = T.StringL().as(json[$_get]("section_id"));
+    this[enrollID] = T.StringL().as(json[$_get]("enrollid"));
+    this[role$] = T.StringL().as(json[$_get]("roll"));
+    this[branchID$] = T.StringL().as(json[$_get]("branch_id"));
+    this[sessionID] = T.StringL().as(json[$_get]("session_id"));
+    this[className] = T.StringL().as(json[$_get]("class_name"));
+    this[sectionName] = T.StringL().as(json[$_get]("section_name"));
+    this[categoryName] = T.StringL().as(json[$_get]("category_name"));
+    ;
+  }).prototype = models.Child.prototype;
+  dart.addTypeTests(models.Child);
+  dart.addTypeCaches(models.Child);
+  dart.setLibraryUri(models.Child, I[0]);
+  dart.setFieldSignature(models.Child, () => ({
+    __proto__: dart.getFields(models.Child.__proto__),
+    id: dart.fieldType(dart.legacy(core.String)),
+    registerNo: dart.fieldType(dart.legacy(core.String)),
+    admissionDate: dart.fieldType(dart.legacy(core.String)),
+    firstName: dart.fieldType(dart.legacy(core.String)),
+    lastName: dart.fieldType(dart.legacy(core.String)),
+    gender: dart.fieldType(dart.legacy(core.String)),
+    birthday: dart.fieldType(dart.legacy(core.String)),
+    religion: dart.fieldType(dart.legacy(core.String)),
+    caste: dart.fieldType(dart.legacy(core.String)),
+    bloodGroup: dart.fieldType(dart.legacy(core.String)),
+    motherTongue: dart.fieldType(dart.legacy(core.String)),
+    currentAddress: dart.fieldType(dart.legacy(core.String)),
+    permanentAddress: dart.fieldType(dart.legacy(core.String)),
+    city: dart.fieldType(dart.legacy(core.String)),
+    state: dart.fieldType(dart.legacy(core.String)),
+    mobileNo: dart.fieldType(dart.legacy(core.String)),
+    categoryID: dart.fieldType(dart.legacy(core.String)),
+    email: dart.fieldType(dart.legacy(core.String)),
+    parentID: dart.fieldType(dart.legacy(core.String)),
+    routeID: dart.fieldType(dart.legacy(core.String)),
+    vehicleID: dart.fieldType(dart.legacy(core.String)),
+    hostelID: dart.fieldType(dart.legacy(core.String)),
+    roomID: dart.fieldType(dart.legacy(core.String)),
+    previousDetails: dart.fieldType(dart.legacy(core.String)),
+    imageURL: dart.fieldType(dart.legacy(core.String)),
+    createdAt: dart.fieldType(dart.legacy(core.String)),
+    updatedAt: dart.fieldType(dart.legacy(core.String)),
+    userName: dart.fieldType(dart.legacy(core.String)),
+    active: dart.fieldType(dart.legacy(core.String)),
+    classID: dart.fieldType(dart.legacy(core.String)),
+    sectionID: dart.fieldType(dart.legacy(core.String)),
+    enrollID: dart.fieldType(dart.legacy(core.String)),
+    role: dart.fieldType(dart.legacy(core.String)),
+    branchID: dart.fieldType(dart.legacy(core.String)),
+    sessionID: dart.fieldType(dart.legacy(core.String)),
+    className: dart.fieldType(dart.legacy(core.String)),
+    sectionName: dart.fieldType(dart.legacy(core.String)),
+    categoryName: dart.fieldType(dart.legacy(core.String))
+  }));
+  var present$ = dart.privateName(models, "StudentAttendance.present");
+  var absent$ = dart.privateName(models, "StudentAttendance.absent");
+  var late$ = dart.privateName(models, "StudentAttendance.late");
+  var hospital$ = dart.privateName(models, "StudentAttendance.hospital");
+  models.StudentAttendance = class StudentAttendance extends core.Object {
+    get present() {
+      return this[present$];
+    }
+    set present(value) {
+      this[present$] = value;
+    }
+    get absent() {
+      return this[absent$];
+    }
+    set absent(value) {
+      this[absent$] = value;
+    }
+    get late() {
+      return this[late$];
+    }
+    set late(value) {
+      this[late$] = value;
+    }
+    get hospital() {
+      return this[hospital$];
+    }
+    set hospital(value) {
+      this[hospital$] = value;
+    }
+  };
+  (models.StudentAttendance.new = function(present, absent, late, hospital) {
+    this[present$] = present;
+    this[absent$] = absent;
+    this[late$] = late;
+    this[hospital$] = hospital;
+    ;
+  }).prototype = models.StudentAttendance.prototype;
+  dart.addTypeTests(models.StudentAttendance);
+  dart.addTypeCaches(models.StudentAttendance);
+  dart.setLibraryUri(models.StudentAttendance, I[0]);
+  dart.setFieldSignature(models.StudentAttendance, () => ({
+    __proto__: dart.getFields(models.StudentAttendance.__proto__),
+    present: dart.fieldType(dart.legacy(core.int)),
+    absent: dart.fieldType(dart.legacy(core.int)),
+    late: dart.fieldType(dart.legacy(core.int)),
+    hospital: dart.fieldType(dart.legacy(core.int))
+  }));
+  var status = dart.privateName(models, "AttendanceHistory.status");
+  var remarks = dart.privateName(models, "AttendanceHistory.remarks");
+  var date = dart.privateName(models, "AttendanceHistory.date");
+  var creationDate = dart.privateName(models, "AttendanceHistory.creationDate");
+  var creationTime = dart.privateName(models, "AttendanceHistory.creationTime");
+  models.AttendanceHistory = class AttendanceHistory extends core.Object {
+    get status() {
+      return this[status];
+    }
+    set status(value) {
+      this[status] = value;
+    }
+    get remarks() {
+      return this[remarks];
+    }
+    set remarks(value) {
+      this[remarks] = value;
+    }
+    get date() {
+      return this[date];
+    }
+    set date(value) {
+      this[date] = value;
+    }
+    get creationDate() {
+      return this[creationDate];
+    }
+    set creationDate(value) {
+      this[creationDate] = value;
+    }
+    get creationTime() {
+      return this[creationTime];
+    }
+    set creationTime(value) {
+      this[creationTime] = value;
+    }
+  };
+  (models.AttendanceHistory.fromJSON = function(json) {
+    this[status] = T.StringL().as(json[$_get]("status"));
+    this[remarks] = T.StringL().as(json[$_get]("remark"));
+    this[date] = T.StringL().as(json[$_get]("attendance_date"));
+    this[creationDate] = T.StringL().as(json[$_get]("creation_date"));
+    this[creationTime] = T.StringL().as(json[$_get]("creation_time"));
+    ;
+  }).prototype = models.AttendanceHistory.prototype;
+  dart.addTypeTests(models.AttendanceHistory);
+  dart.addTypeCaches(models.AttendanceHistory);
+  dart.setLibraryUri(models.AttendanceHistory, I[0]);
+  dart.setFieldSignature(models.AttendanceHistory, () => ({
+    __proto__: dart.getFields(models.AttendanceHistory.__proto__),
+    status: dart.fieldType(dart.legacy(core.String)),
+    remarks: dart.fieldType(dart.legacy(core.String)),
+    date: dart.fieldType(dart.legacy(core.String)),
+    creationDate: dart.fieldType(dart.legacy(core.String)),
+    creationTime: dart.fieldType(dart.legacy(core.String))
+  }));
+  dart.trackLibraries("packages/school/Utils/models.dart", {
+    "package:school/Utils/models.dart": models
+  }, {
+  }, '{"version":3,"sourceRoot":"","sources":["models.dart"],"names":[],"mappings":"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","file":"../../../../../packages/school/Utils/models.dart.lib.js"}');
+  // Exports:
+  return {
+    Utils__models: models
+  };
+}));
+
+//# sourceMappingURL=models.dart.lib.js.map

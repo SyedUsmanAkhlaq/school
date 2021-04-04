@@ -1,8 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:school/Controllers/attendance_controller.dart';
 import 'package:school/Controllers/authentication_controller.dart';
 import 'package:school/Controllers/children_controller.dart';
+import 'package:school/Controllers/voucher_controller.dart';
 import 'package:school/Pages/sign_in_page.dart';
 import 'package:school/Utils/global.dart';
 import 'package:school/Utils/size_config.dart';
@@ -15,8 +17,12 @@ class SplashScreenPage extends StatefulWidget {
 class _SplashScreenPageState extends State<SplashScreenPage> {
   @override
   void initState() {
+    /// Initializing Controllers
     Get.put<ChildrenController>(ChildrenController());
+    Get.put<AttendanceController>(AttendanceController());
+    Get.put<VoucherController>(VoucherController());
     Get.put<AuthenticationController>(AuthenticationController());
+
     Future.delayed(
       Duration(seconds: 4),
       () => Get.to(
