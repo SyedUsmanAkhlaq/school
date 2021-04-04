@@ -176,3 +176,18 @@ class AttendanceHistory {
         this.creationDate = json['creation_date'],
         this.creationTime = json['creation_time'];
 }
+
+class Voucher {
+  String name;
+  String amount;
+  String discount;
+  String balance;
+  String dueDate;
+
+  Voucher.fromJSON(Map json)
+      : this.name = json['name'],
+        this.dueDate = json['due_date'],
+        this.amount = json['amount'],
+        this.discount = json['type_discount'],
+        this.balance = json['balance'];
+}

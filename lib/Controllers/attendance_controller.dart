@@ -11,22 +11,13 @@ class AttendanceController extends GetxController {
     update();
   }
 
-  @override
-  void onInit() {
-    loadAttendance();
-    super.onInit();
-  }
-
-  void loadAttendance() async {
-    _attendance = await APIInterface.getAttendance();
-    // printInfo(info: '${_attendance.absent}');
-    // return _attendance;
+  void loadAttendance(String studentID) async {
+    _attendance = await APIInterface.getAttendance(studentID);
     update();
   }
 
   Future loadAttendanceHistory() async {
     var test = await APIInterface.attendanceHistory();
-    // print(test.first.creationTime);
     return test;
   }
 }

@@ -8,12 +8,33 @@ import 'package:school/Utils/models.dart';
 import 'package:school/Widgets/attendance_details.dart';
 import 'package:school/Widgets/drawer.dart';
 import 'package:school/Widgets/transparent_image.dart';
+import 'package:syncfusion_flutter_charts/charts.dart';
 
-class StudentHomePage extends StatelessWidget {
+class StudentHomePage extends StatefulWidget {
   final Children children;
-  final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
 
   StudentHomePage({Key key, this.children}) : super(key: key);
+
+  @override
+  _StudentHomePageState createState() => _StudentHomePageState();
+}
+
+class _StudentHomePageState extends State<StudentHomePage> {
+  List<_SalesData> data = [
+    _SalesData('Jan', 35),
+    _SalesData('Feb', 50),
+    _SalesData('Mar', 34),
+    _SalesData('Apr', 32),
+    _SalesData('May', 10)
+  ];
+  final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
+
+  @override
+  void initState() {
+    printInfo(info: '${widget.children.childID}');
+    Get.find<AttendanceController>().loadAttendance(widget.children.childID);
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -71,11 +92,11 @@ class StudentHomePage extends StatelessWidget {
                 ),
                 child: Row(
                   children: [
-                    // _image(),
+                    _image(),
                     _details(context),
                     Spacer(),
                     Text(
-                      children.childClass,
+                      widget.children.childClass,
                       style: Theme.of(context).textTheme.caption,
                     ),
                   ],
@@ -98,7 +119,6 @@ class StudentHomePage extends StatelessWidget {
                   ),
                   child: IntrinsicHeight(
                     child: GetBuilder<AttendanceController>(
-                      init: AttendanceController(),
                       builder: (value) => Row(
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: [
@@ -131,6 +151,31 @@ class StudentHomePage extends StatelessWidget {
                   ),
                 ),
               ),
+              Container(
+                margin: EdgeInsets.symmetric(
+                  horizontal: sizeConfig.width(.02),
+                  vertical: sizeConfig.height(.02),
+                ),
+                height: sizeConfig.height(.3),
+                child: SfCartesianChart(
+                  primaryXAxis: CategoryAxis(),
+                  title: ChartTitle(text: 'Result History'),
+                  tooltipBehavior: TooltipBehavior(enable: true),
+                  series: <ChartSeries<_SalesData, String>>[
+                    SplineAreaSeries<_SalesData, String>(
+                      splineType: SplineType.cardinal,
+                      color: Theme.of(context).primaryColor,
+
+                      dataSource: data,
+                      xValueMapper: (_SalesData sales, _) => sales.year,
+                      yValueMapper: (_SalesData sales, _) => sales.sales,
+                      name: 'Sales',
+                      // Enable data label
+                      dataLabelSettings: DataLabelSettings(isVisible: false),
+                    )
+                  ],
+                ),
+              ),
             ],
           ),
         ),
@@ -143,7 +188,7 @@ class StudentHomePage extends StatelessWidget {
           child: FadeInImage(
             height: sizeConfig.height(.11),
             width: sizeConfig.height(.11),
-            image: NetworkImage(children.childImageURL),
+            image: NetworkImage(widget.children.childImageURL),
             placeholder: MemoryImage(kTransparentImage),
             imageErrorBuilder:
                 (BuildContext context, Object object, StackTrace trace) =>
@@ -172,14 +217,14 @@ class StudentHomePage extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              children.childUserName,
+              widget.children.childUserName,
               style: Theme.of(context).textTheme.subtitle2,
             ),
             SizedBox(
               height: sizeConfig.height(.01),
             ),
             Text(
-              children.childSection,
+              widget.children.childSection,
               style: Theme.of(context).textTheme.subtitle2.copyWith(
                     fontWeight: FontWeight.w200,
                     color: Colors.black,
@@ -190,5 +235,13 @@ class StudentHomePage extends StatelessWidget {
       );
 
   void _openDrawer() => _scaffoldKey.currentState.openDrawer();
+
   void _goToAttendanceDetail() => Get.to(AttendanceDetailPage());
+}
+
+class _SalesData {
+  _SalesData(this.year, this.sales);
+
+  final String year;
+  final double sales;
 }

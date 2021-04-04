@@ -41,7 +41,7 @@ class ChildrenListItem extends StatelessWidget {
           ),
           child: Row(
             children: [
-              // _image(),
+              _image(),
               _details(context),
               Spacer(),
               Text(
@@ -106,7 +106,10 @@ class ChildrenListItem extends StatelessWidget {
         ),
       );
   void _goToDetailPage() {
-    Get.find<ChildrenController>().loadChildData();
+    print(children.childID);
+    Get.find<ChildrenController>().selectedChildren = children;
+    print(Get.find<ChildrenController>().selectedChildren.childID);
+    Get.find<ChildrenController>().loadChildData(children.childID);
     Get.to(
       StudentHomePage(
         children: children,

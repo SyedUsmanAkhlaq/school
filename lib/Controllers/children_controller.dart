@@ -6,7 +6,9 @@ import 'package:school/Utils/models.dart';
 class ChildrenController extends GetxController {
   List<Children> _children;
   Child _child;
+  Children selectedChildren;
 
+  // Children get selectedChildren => _selectedChildren;
   List<Children> get children => _children;
   Child get child => _child;
 
@@ -20,14 +22,19 @@ class ChildrenController extends GetxController {
     update();
   }
 
+  // set selectedChildren(Children children) {
+  //   _selectedChildren = selectedChildren;
+  //   update();
+  // }
+
   Future loadChildrenData() async {
     _children = await APIInterface.childrenData(token['loggedin_userid']);
     // printInfo(info: '$_children');
     return _children;
   }
 
-  Future loadChildData() async {
-    _child = await APIInterface.childData();
+  Future loadChildData(String studentID) async {
+    _child = await APIInterface.childData(studentID);
     // printInfo(info: '$_child');
     return _child;
   }

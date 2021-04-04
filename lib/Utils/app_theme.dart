@@ -24,8 +24,25 @@ class AppTheme {
         dividerColor: Color(0xAAE4E9E7),
         cupertinoOverrideTheme: _cupertinoOverrideTheme(),
         textSelectionTheme: _textSelectionTheme(),
+        textButtonTheme: _textButtonTheme(),
+        elevatedButtonTheme: _elevatedButtonTheme(),
         canvasColor:
             Colors.transparent, //This is necessary for bottomSheet to work.
+      );
+
+  static ElevatedButtonThemeData _elevatedButtonTheme() =>
+      ElevatedButtonThemeData(
+        style: ElevatedButton.styleFrom(
+          primary: Colors.white,
+          // shape:
+        ),
+      );
+
+  static TextButtonThemeData _textButtonTheme() => TextButtonThemeData(
+        style: TextButton.styleFrom(
+          primary: Colors.white,
+          backgroundColor: primaryColor,
+        ),
       );
 
   static AppBarTheme _appBarTheme() => AppBarTheme(

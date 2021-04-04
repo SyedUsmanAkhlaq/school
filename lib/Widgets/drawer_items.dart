@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:school/Utils/global.dart';
 
 class DrawerItems extends StatelessWidget {
-  final String leadingIcon;
+  final IconData leadingIcon;
   final String label;
   final Function onTap;
 
@@ -27,8 +27,9 @@ class DrawerItems extends StatelessWidget {
                 Container(
                   height: sizeConfig.height(.03),
                   width: sizeConfig.height(.03),
-                  child: Image.asset(
+                  child: Icon(
                     leadingIcon,
+                    color: Colors.white,
                   ),
                 ),
               if (leadingIcon != null)
