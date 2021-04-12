@@ -1,24 +1,27 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:school/Controllers/attendance_controller.dart';
+import 'package:school/Utils/constants.dart';
 import 'package:school/Utils/global.dart';
 import 'package:school/Utils/models.dart';
 import 'package:school/Widgets/attendance_details.dart';
 import 'package:school/Widgets/drawer.dart';
 
-class AttendanceDetailPage extends StatelessWidget {
+class AttendanceDetailPage extends StatefulWidget {
+  @override
+  _AttendanceDetailPageState createState() => _AttendanceDetailPageState();
+}
+
+class _AttendanceDetailPageState extends State<AttendanceDetailPage> {
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
-  Widget build(BuildContext context) {
-    Get.find<AttendanceController>().loadAttendanceHistory();
-    return Scaffold(
-      key: _scaffoldKey,
-      appBar: _appBar(context),
-      body: _body(context),
-      drawer: _drawer(),
-    );
-  }
+  Widget build(BuildContext context) => Scaffold(
+        key: _scaffoldKey,
+        appBar: _appBar(context),
+        body: _body(context),
+        drawer: _drawer(),
+      );
 
   _appBar(BuildContext context) => AppBar(
         title: Text(
@@ -95,6 +98,54 @@ class AttendanceDetailPage extends StatelessWidget {
                     ),
                   ),
                 ),
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  DropdownButton(
+                      dropdownColor: Colors.white,
+                      items: kYears
+                          .map<DropdownMenuItem<String>>(
+                            (int value) => DropdownMenuItem<String>(
+                              value: value.toString(),
+                              child: Text(
+                                value.toString(),
+                                style: TextStyle(color: Colors.black),
+                              ),
+                            ),
+                          )
+                          .toList(),
+                      value: Get.find<AttendanceController>().selectedYear,
+                      onChanged: (String value) {
+                        setState(() {
+                          Get.find<AttendanceController>().selectedYear = value;
+                        });
+                      }),
+                  SizedBox(
+                    width: sizeConfig.width(.15),
+                  ),
+                  DropdownButton(
+                    dropdownColor: Colors.white,
+                    items: kMonths
+                        .map<DropdownMenuItem<String>>(
+                          (String value) => DropdownMenuItem<String>(
+                            value: value,
+                            child: Text(
+                              value,
+                              style: TextStyle(color: Colors.black),
+                            ),
+                          ),
+                        )
+                        .toList(),
+                    value: Get.find<AttendanceController>().selectedMonth,
+                    onChanged: (String value) {
+                      setState(() {
+                        Get.find<AttendanceController>().selectedMonth = value;
+                      });
+                      Get.find<AttendanceController>().loadAttendanceHistory();
+                    },
+                  ),
+                ],
               ),
               Container(
                 margin: EdgeInsets.symmetric(
@@ -181,6 +232,7 @@ class AttendanceHistoryWidget extends StatelessWidget {
   final AttendanceHistory history;
 
   const AttendanceHistoryWidget({Key key, this.history}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return Container(

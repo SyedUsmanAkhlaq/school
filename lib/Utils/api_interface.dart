@@ -89,8 +89,8 @@ class APIInterface {
   static Future<StudentAttendance> getAttendance(String studentID) async {
     try {
       var url =
-          "http://ramom.logicsfort.com/api/user/studentAttendance?student_id=$studentID";
-      // print(url);
+          "http://ramom.logicsfort.com/api/user/studentAttendance?student_id=$studentID&timestamp=${DateTime.now().year}-${kMonths[DateTime.now().month - 1]}";
+      print(url);
       Response response = await Dio().get(url);
       if (response.statusCode == 200) {
         // print(response.statusCode);
@@ -119,9 +119,8 @@ class APIInterface {
       if (response.statusCode == 200) {
         List<AttendanceHistory> history = [];
         Map json = response.data['atten'];
-        json.forEach((key, value) {
-          history.add(AttendanceHistory.fromJSON(value));
-        });
+        json.forEach(
+            (key, value) => history.add(AttendanceHistory.fromJSON(value)));
         return history;
       } else
         return null;

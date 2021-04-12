@@ -6,6 +6,7 @@ import 'package:school/Controllers/authentication_controller.dart';
 import 'package:school/Controllers/children_controller.dart';
 import 'package:school/Controllers/voucher_controller.dart';
 import 'package:school/Pages/sign_in_page.dart';
+import 'package:school/Utils/constants.dart';
 import 'package:school/Utils/global.dart';
 import 'package:school/Utils/size_config.dart';
 
@@ -26,9 +27,10 @@ class _SplashScreenPageState extends State<SplashScreenPage> {
     Future.delayed(
       Duration(seconds: 4),
       () => Get.to(
-        SignInPage(),
+        () => SignInPage(),
       ),
     );
+    print(kYears);
     super.initState();
   }
 
@@ -44,7 +46,6 @@ class _SplashScreenPageState extends State<SplashScreenPage> {
       );
 
   _body() => Container(
-        // padding: EdgeInsets.only(top: sizeConfig.safeArea.top),
         color: Theme.of(context).primaryColor,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,

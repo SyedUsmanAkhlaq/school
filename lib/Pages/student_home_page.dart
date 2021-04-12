@@ -1,12 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:school/Controllers/attendance_controller.dart';
 import 'package:school/Pages/attendance_detail_page.dart';
+import 'package:school/Utils/constants.dart';
 import 'package:school/Utils/global.dart';
 import 'package:school/Utils/models.dart';
 import 'package:school/Widgets/attendance_details.dart';
+import 'package:school/Widgets/date_selection_bar.dart';
 import 'package:school/Widgets/drawer.dart';
+import 'package:school/Widgets/home_work_list_tile.dart';
 import 'package:school/Widgets/transparent_image.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
 
@@ -169,13 +173,25 @@ class _StudentHomePageState extends State<StudentHomePage> {
                       dataSource: data,
                       xValueMapper: (_SalesData sales, _) => sales.year,
                       yValueMapper: (_SalesData sales, _) => sales.sales,
-                      name: 'Sales',
+                      name: 'Marks',
                       // Enable data label
                       dataLabelSettings: DataLabelSettings(isVisible: false),
-                    )
+                    ),
                   ],
                 ),
               ),
+              SizedBox(
+                height: sizeConfig.height(.04),
+              ),
+              _diary(),
+              SizedBox(
+                height: sizeConfig.height(.04),
+              ),
+              _events(),
+              SizedBox(
+                height: sizeConfig.height(.04),
+              ),
+              _examSchedule()
             ],
           ),
         ),
@@ -234,9 +250,143 @@ class _StudentHomePageState extends State<StudentHomePage> {
         ),
       );
 
+  _diary() => Container(
+        margin: EdgeInsets.symmetric(
+          horizontal: sizeConfig.width(.03),
+        ),
+        decoration: BoxDecoration(
+          color: Colors.white,
+        ),
+        child: Column(
+          children: [
+            Container(
+              margin: EdgeInsets.symmetric(
+                horizontal: sizeConfig.width(.03),
+                vertical: sizeConfig.height(.01),
+              ),
+              child: Row(
+                children: [
+                  Text(
+                    'Diary',
+                    style: Theme.of(context).textTheme.subtitle1.copyWith(
+                          fontSize: 25,
+                        ),
+                  ),
+                  Spacer(),
+                  Text(
+                    '${DateTime.now().day} ${kMonths[DateTime.now().month - 1]}',
+                    style: Theme.of(context).textTheme.subtitle2.copyWith(
+                          fontSize: 20,
+                          color: Colors.grey,
+                        ),
+                  ),
+                ],
+              ),
+            ),
+            Container(
+              margin: EdgeInsets.only(
+                top: sizeConfig.height(.01),
+                right: sizeConfig.width(.03),
+              ),
+              alignment: Alignment.bottomRight,
+              child: Text(
+                'Today',
+                style: Theme.of(context).textTheme.subtitle2.copyWith(
+                      fontSize: 20,
+                    ),
+              ),
+            ),
+            DateSelectionBar(onDateSelected: _onDateSelected),
+            SizedBox(
+              height: sizeConfig.height(.01),
+            ),
+            HomeWorkListTile()
+          ],
+        ),
+      );
+
+  _events() => Container(
+        margin: EdgeInsets.symmetric(
+          horizontal: sizeConfig.width(.03),
+        ),
+        decoration: BoxDecoration(
+          color: Colors.white,
+        ),
+        child: Column(
+          children: [
+            Container(
+              margin: EdgeInsets.symmetric(
+                horizontal: sizeConfig.width(.03),
+                vertical: sizeConfig.height(.01),
+              ),
+              child: Row(
+                children: [
+                  Text(
+                    'Events',
+                    style: Theme.of(context).textTheme.subtitle1.copyWith(
+                          fontSize: 25,
+                        ),
+                  ),
+                ],
+              ),
+            ),
+            DateSelectionBar(onDateSelected: _onDateSelected),
+            SizedBox(
+              height: sizeConfig.height(.01),
+            ),
+            Text(
+              'No Event Available',
+              style: Theme.of(context).textTheme.caption,
+            ),
+            SizedBox(
+              height: sizeConfig.height(.01),
+            ),
+          ],
+        ),
+      );
+
+  _examSchedule() => Container(
+        height: sizeConfig.height(.25),
+        margin: EdgeInsets.symmetric(
+          horizontal: sizeConfig.width(.03),
+        ),
+        decoration: BoxDecoration(
+          color: Colors.white,
+        ),
+        child: Column(
+          children: [
+            Container(
+              alignment: Alignment.centerLeft,
+              margin: EdgeInsets.only(
+                top: sizeConfig.height(.03),
+                left: sizeConfig.width(.03),
+              ),
+              child: Text(
+                'Exam Schedule',
+                style: Theme.of(context).textTheme.subtitle1.copyWith(
+                      fontSize: 25,
+                    ),
+              ),
+            ),
+            SizedBox(
+              height: sizeConfig.height(.01),
+            ),
+            Expanded(
+              child: ListView.builder(
+                scrollDirection: Axis.horizontal,
+                itemBuilder: (BuildContext context, int index) =>
+                    ExamListTile(),
+                itemCount: 10,
+              ),
+            ),
+          ],
+        ),
+      );
+
   void _openDrawer() => _scaffoldKey.currentState.openDrawer();
 
   void _goToAttendanceDetail() => Get.to(AttendanceDetailPage());
+  void _onDateSelected(DateTime dateTime) => DateTime.now();
 }
 
 class _SalesData {
@@ -244,4 +394,92 @@ class _SalesData {
 
   final String year;
   final double sales;
+}
+
+class ExamListTile extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      margin: EdgeInsets.symmetric(
+        horizontal: sizeConfig.width(.03),
+        vertical: sizeConfig.height(.02),
+      ),
+      padding: EdgeInsets.symmetric(
+        horizontal: sizeConfig.width(.02),
+        vertical: sizeConfig.height(.01),
+      ),
+      decoration: BoxDecoration(
+        color: Theme.of(context).primaryColor.withOpacity(.3),
+        borderRadius: BorderRadius.circular(10),
+      ),
+      child: Column(
+        children: [
+          Row(
+            mainAxisSize: MainAxisSize.min,
+            textBaseline: TextBaseline.alphabetic,
+            crossAxisAlignment: CrossAxisAlignment.baseline,
+            children: [
+              Text(
+                'English',
+                style: Theme.of(context).textTheme.subtitle2.copyWith(
+                      color: Colors.grey,
+                      fontSize: 25,
+                    ),
+              ),
+              SizedBox(
+                width: sizeConfig.width(.02),
+              ),
+              Text(
+                'Mid Term',
+                style: Theme.of(context).textTheme.subtitle2.copyWith(
+                      color: Colors.grey,
+                    ),
+              )
+            ],
+          ),
+          Spacer(),
+          Row(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Container(
+                padding: EdgeInsets.symmetric(
+                  horizontal: sizeConfig.width(.04),
+                  vertical: sizeConfig.height(.01),
+                ),
+                decoration: BoxDecoration(
+                  color: Theme.of(context).primaryColor,
+                  borderRadius: BorderRadius.circular(5),
+                ),
+                child: Text(
+                  '22nd Sep, 2021',
+                  style: Theme.of(context).textTheme.button,
+                ),
+              ),
+              SizedBox(
+                width: sizeConfig.width(.02),
+              ),
+              Container(
+                padding: EdgeInsets.symmetric(
+                  horizontal: sizeConfig.width(.04),
+                  vertical: sizeConfig.height(.01),
+                ),
+                decoration: BoxDecoration(
+                  border: Border.all(
+                    color: Theme.of(context).primaryColor,
+                  ),
+                  borderRadius: BorderRadius.circular(5),
+                ),
+                child: Text(
+                  '22nd Sep, 2021',
+                  style: Theme.of(context).textTheme.button.copyWith(
+                        color: Theme.of(context).primaryColor,
+                      ),
+                ),
+              )
+            ],
+          )
+        ],
+      ),
+    );
+  }
 }

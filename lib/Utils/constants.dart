@@ -16,3 +16,22 @@ const List<String> kMonths = [
   "November",
   "December",
 ];
+
+const List<String> kWeekdaysShort = [
+  "Mon",
+  "Tue",
+  "Wed",
+  "Thu",
+  "Fri",
+  "Sat",
+  "Sun",
+];
+
+const List<String> subjectName = [
+  'Maths',
+  'English',
+  'Urdu',
+  'Physics',
+];
+
+List<int> kYears = [for (var i = 2000; i < DateTime.now().year + 1; i += 1) i];

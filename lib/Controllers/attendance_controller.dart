@@ -1,8 +1,11 @@
 import 'package:get/get.dart';
 import 'package:school/Utils/api_interface.dart';
+import 'package:school/Utils/constants.dart';
 import 'package:school/Utils/models.dart';
 
 class AttendanceController extends GetxController {
+  String _selectYear = DateTime.now().year.toString();
+  String _selectMonth = kMonths[DateTime.now().month - 1];
   StudentAttendance _attendance = StudentAttendance(0, 0, 0, 0);
   StudentAttendance get attendance => _attendance;
 
@@ -10,6 +13,19 @@ class AttendanceController extends GetxController {
     _attendance = attendance;
     update();
   }
+
+  set selectedYear(String selectedYear) {
+    _selectYear = selectedYear;
+    update();
+  }
+
+  set selectedMonth(String selectedMonth) {
+    _selectMonth = selectedMonth;
+    update();
+  }
+
+  String get selectedYear => _selectYear;
+  String get selectedMonth => _selectMonth;
 
   void loadAttendance(String studentID) async {
     _attendance = await APIInterface.getAttendance(studentID);
