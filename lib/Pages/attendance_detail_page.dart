@@ -235,6 +235,10 @@ class AttendanceHistoryWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    if (history.status == '-'){
+      return Container();
+    }
+    else
     return Container(
       margin: EdgeInsets.symmetric(
         vertical: sizeConfig.height(.01),

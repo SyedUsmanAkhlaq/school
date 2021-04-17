@@ -28,12 +28,18 @@ class AttendanceController extends GetxController {
   String get selectedMonth => _selectMonth;
 
   void loadAttendance(String studentID) async {
-    _attendance = await APIInterface.getAttendance(studentID);
+    if(selectedMonth == null || selectedYear == null){
+      selectedMonth = kMonths[DateTime.now().month - 1];
+      selectedYear = DateTime.now().year.toString();
+    }
+    String date = selectedYear+'-'+selectedMonth;
+    _attendance = await APIInterface.getAttendance(studentID, date);
     update();
   }
 
   Future loadAttendanceHistory() async {
-    var test = await APIInterface.attendanceHistory();
+    String date = selectedYear+'-'+selectedMonth;
+    var test = await APIInterface.attendanceHistory(date);
     return test;
   }
 }

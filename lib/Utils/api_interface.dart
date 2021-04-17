@@ -86,10 +86,10 @@ class APIInterface {
     }
   }
 
-  static Future<StudentAttendance> getAttendance(String studentID) async {
+  static Future<StudentAttendance> getAttendance(String studentID, String date) async {
     try {
       var url =
-          "http://ramom.logicsfort.com/api/user/studentAttendance?student_id=$studentID&timestamp=${DateTime.now().year}-${kMonths[DateTime.now().month - 1]}";
+          "http://ramom.logicsfort.com/api/user/studentAttendance?student_id=$studentID&timestamp=$date";
       print(url);
       Response response = await Dio().get(url);
       if (response.statusCode == 200) {
@@ -110,10 +110,10 @@ class APIInterface {
     }
   }
 
-  static Future<List<AttendanceHistory>> attendanceHistory() async {
+  static Future<List<AttendanceHistory>> attendanceHistory(String date) async {
     try {
       var url =
-          "http://ramom.logicsfort.com/api/user/studentAttendance?student_id=6&timestamp=${DateTime.now().year}-${kMonths[DateTime.now().month - 1]}";
+          "http://ramom.logicsfort.com/api/user/studentAttendance?student_id=6&timestamp=$date";
       print(url);
       Response response = await Dio().get(url);
       if (response.statusCode == 200) {
