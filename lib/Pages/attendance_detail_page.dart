@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:school/Controllers/attendance_controller.dart';
@@ -207,8 +208,10 @@ class _AttendanceDetailPageState extends State<AttendanceDetailPage> {
                       );
                     else if (value.hasError)
                       return Center(
-                        child: Text('Could not Load Data'),
-                      );
+                          child: ErrorWidget.withDetails(
+                        message: 'Could not Load Data',
+                      ) //Text('Could not Load Data'),
+                          );
                     else
                       return ListView.builder(
                         itemCount: value.data.length,
@@ -234,33 +237,29 @@ class AttendanceHistoryWidget extends StatelessWidget {
   const AttendanceHistoryWidget({Key key, this.history}) : super(key: key);
 
   @override
-  Widget build(BuildContext context) {
-    if (history.status == '-'){
-      return Container();
-    }
-    else
-    return Container(
-      margin: EdgeInsets.symmetric(
-        vertical: sizeConfig.height(.01),
-        horizontal: sizeConfig.width(.08),
-      ),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          Text(
-            history.date,
-            style: Theme.of(context).textTheme.subtitle1,
+  Widget build(BuildContext context) => history.status == '-'
+      ? Container()
+      : Container(
+          margin: EdgeInsets.symmetric(
+            vertical: sizeConfig.height(.01),
+            horizontal: sizeConfig.width(.08),
           ),
-          Text(
-            history.creationTime,
-            style: Theme.of(context).textTheme.subtitle1,
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Text(
+                history.date,
+                style: Theme.of(context).textTheme.subtitle1,
+              ),
+              Text(
+                history.creationTime,
+                style: Theme.of(context).textTheme.subtitle1,
+              ),
+              Text(
+                history.status,
+                style: Theme.of(context).textTheme.subtitle1,
+              ),
+            ],
           ),
-          Text(
-            history.status,
-            style: Theme.of(context).textTheme.subtitle1,
-          ),
-        ],
-      ),
-    );
-  }
+        );
 }

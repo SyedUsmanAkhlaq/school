@@ -4,9 +4,9 @@ import 'package:get/get.dart';
 import 'package:school/Controllers/attendance_controller.dart';
 import 'package:school/Controllers/authentication_controller.dart';
 import 'package:school/Controllers/children_controller.dart';
+import 'package:school/Controllers/leave_controller.dart';
 import 'package:school/Controllers/voucher_controller.dart';
 import 'package:school/Pages/sign_in_page.dart';
-import 'package:school/Utils/constants.dart';
 import 'package:school/Utils/global.dart';
 import 'package:school/Utils/size_config.dart';
 
@@ -22,6 +22,7 @@ class _SplashScreenPageState extends State<SplashScreenPage> {
     Get.put<ChildrenController>(ChildrenController());
     Get.put<AttendanceController>(AttendanceController());
     Get.put<VoucherController>(VoucherController());
+    Get.put<LeaveController>(LeaveController());
     Get.put<AuthenticationController>(AuthenticationController());
 
     Future.delayed(
@@ -30,7 +31,6 @@ class _SplashScreenPageState extends State<SplashScreenPage> {
         () => SignInPage(),
       ),
     );
-    print(kYears);
     super.initState();
   }
 

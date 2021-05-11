@@ -60,7 +60,7 @@ class ChildrenListItem extends StatelessWidget {
           child: FadeInImage(
             height: sizeConfig.height(.11),
             width: sizeConfig.height(.11),
-            image: NetworkImage(children.childImageURL),
+            image: NetworkImage(children?.childImageURL),
             placeholder: MemoryImage(kTransparentImage),
             imageErrorBuilder:
                 (BuildContext context, Object object, StackTrace trace) =>
@@ -111,7 +111,7 @@ class ChildrenListItem extends StatelessWidget {
     print(Get.find<ChildrenController>().selectedChildren.childID);
     Get.find<ChildrenController>().loadChildData(children.childID);
     Get.to(
-      StudentHomePage(
+      () => StudentHomePage(
         children: children,
       ),
     );

@@ -34,4 +34,10 @@ const List<String> subjectName = [
   'Physics',
 ];
 
+const List<String> leaveType = [
+  'Select Leave Type',
+  'Sick Leave',
+  'Casual Leave'
+];
+
 List<int> kYears = [for (var i = 2000; i < DateTime.now().year + 1; i += 1) i];

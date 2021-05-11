@@ -80,7 +80,7 @@ class BasicInformationPage extends StatelessWidget {
                     _details(context),
                     Spacer(),
                     Text(
-                      value.child.className,
+                      child.className,
                       style: Theme.of(context).textTheme.caption,
                     ),
                   ],
@@ -116,7 +116,7 @@ class BasicInformationPage extends StatelessWidget {
                                     ),
                           ),
                           Text(
-                            value.child.registerNo,
+                            child.registerNo,
                             style:
                                 Theme.of(context).textTheme.subtitle2.copyWith(
                                       fontWeight: FontWeight.normal,
@@ -130,7 +130,7 @@ class BasicInformationPage extends StatelessWidget {
                                     ),
                           ),
                           Text(
-                            value.child.role,
+                            child.role,
                             style:
                                 Theme.of(context).textTheme.subtitle2.copyWith(
                                       fontWeight: FontWeight.normal,
@@ -159,7 +159,7 @@ class BasicInformationPage extends StatelessWidget {
                                     ),
                           ),
                           Text(
-                            value.child.admissionDate,
+                            child.admissionDate,
                             style:
                                 Theme.of(context).textTheme.subtitle2.copyWith(
                                       fontWeight: FontWeight.normal,
@@ -188,7 +188,7 @@ class BasicInformationPage extends StatelessWidget {
                                     ),
                           ),
                           Text(
-                            value.child.birthday,
+                            child.birthday,
                             style:
                                 Theme.of(context).textTheme.subtitle2.copyWith(
                                       fontWeight: FontWeight.normal,
@@ -217,7 +217,7 @@ class BasicInformationPage extends StatelessWidget {
                                     ),
                           ),
                           Text(
-                            value.child.bloodGroup,
+                            child.bloodGroup,
                             style:
                                 Theme.of(context).textTheme.subtitle2.copyWith(
                                       fontWeight: FontWeight.normal,
@@ -246,7 +246,7 @@ class BasicInformationPage extends StatelessWidget {
                                     ),
                           ),
                           Text(
-                            value.child.mobileNo,
+                            child.mobileNo,
                             style:
                                 Theme.of(context).textTheme.subtitle2.copyWith(
                                       fontWeight: FontWeight.normal,
@@ -275,7 +275,7 @@ class BasicInformationPage extends StatelessWidget {
                                     ),
                           ),
                           Text(
-                            value.child.city,
+                            child.city,
                             style:
                                 Theme.of(context).textTheme.subtitle2.copyWith(
                                       fontWeight: FontWeight.normal,
@@ -289,7 +289,7 @@ class BasicInformationPage extends StatelessWidget {
                                     ),
                           ),
                           Text(
-                            value.child.state,
+                            child.state,
                             style:
                                 Theme.of(context).textTheme.subtitle2.copyWith(
                                       fontWeight: FontWeight.normal,
@@ -317,7 +317,7 @@ class BasicInformationPage extends StatelessWidget {
                                     ),
                           ),
                           Text(
-                            value.child.currentAddress,
+                            child.currentAddress,
                             style:
                                 Theme.of(context).textTheme.subtitle2.copyWith(
                                       fontWeight: FontWeight.normal,
@@ -338,62 +338,56 @@ class BasicInformationPage extends StatelessWidget {
         ),
       );
 
-  _image() => GetBuilder<ChildrenController>(
-        builder: (value) => ClipRRect(
-          borderRadius: BorderRadius.circular(360),
-          child: Container(
-            // color: Colors.grey[200],
-            child: FadeInImage(
-              height: sizeConfig.height(.11),
-              width: sizeConfig.height(.11),
-              image: NetworkImage(value.child.imageURL),
-              placeholder: MemoryImage(kTransparentImage),
-              imageErrorBuilder:
-                  (BuildContext context, Object object, StackTrace trace) =>
-                      Container(
-                height: sizeConfig.height(.09),
-                width: sizeConfig.height(.09),
-                alignment: Alignment.center,
-                color: Colors.black26,
-                child: Text(
-                  'No\nImage',
-                  textAlign: TextAlign.center,
-                  style: Theme.of(context)
-                      .textTheme
-                      .caption
-                      .copyWith(fontSize: 13),
-                ),
+  _image() => ClipRRect(
+        borderRadius: BorderRadius.circular(360),
+        child: Container(
+          // color: Colors.grey[200],
+          child: FadeInImage(
+            height: sizeConfig.height(.11),
+            width: sizeConfig.height(.11),
+            image: NetworkImage(child.imageURL),
+            placeholder: MemoryImage(kTransparentImage),
+            imageErrorBuilder:
+                (BuildContext context, Object object, StackTrace trace) =>
+                    Container(
+              height: sizeConfig.height(.09),
+              width: sizeConfig.height(.09),
+              alignment: Alignment.center,
+              color: Colors.black26,
+              child: Text(
+                'No\nImage',
+                textAlign: TextAlign.center,
+                style:
+                    Theme.of(context).textTheme.caption.copyWith(fontSize: 13),
               ),
-              fit: BoxFit.cover,
             ),
+            fit: BoxFit.cover,
           ),
         ),
       );
 
-  _details(BuildContext context) => GetBuilder<ChildrenController>(
-        builder: (value) => Container(
-          margin: EdgeInsets.only(
-            left: sizeConfig.width(.02),
-          ),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                value.child.userName,
-                style: Theme.of(context).textTheme.subtitle2,
-              ),
-              SizedBox(
-                height: sizeConfig.height(.01),
-              ),
-              Text(
-                value.child.sectionName,
-                style: Theme.of(context).textTheme.subtitle2.copyWith(
-                      fontWeight: FontWeight.w200,
-                      color: Colors.black,
-                    ),
-              ),
-            ],
-          ),
+  _details(BuildContext context) => Container(
+        margin: EdgeInsets.only(
+          left: sizeConfig.width(.02),
+        ),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              child.userName,
+              style: Theme.of(context).textTheme.subtitle2,
+            ),
+            SizedBox(
+              height: sizeConfig.height(.01),
+            ),
+            Text(
+              child.sectionName,
+              style: Theme.of(context).textTheme.subtitle2.copyWith(
+                    fontWeight: FontWeight.w200,
+                    color: Colors.black,
+                  ),
+            ),
+          ],
         ),
       );
 

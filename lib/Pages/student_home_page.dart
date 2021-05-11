@@ -35,7 +35,6 @@ class _StudentHomePageState extends State<StudentHomePage> {
 
   @override
   void initState() {
-    printInfo(info: '${widget.children.childID}');
     Get.find<AttendanceController>().loadAttendance(widget.children.childID);
     super.initState();
   }
@@ -204,7 +203,7 @@ class _StudentHomePageState extends State<StudentHomePage> {
           child: FadeInImage(
             height: sizeConfig.height(.11),
             width: sizeConfig.height(.11),
-            image: NetworkImage(widget.children.childImageURL),
+            image: NetworkImage(widget?.children?.childImageURL),
             placeholder: MemoryImage(kTransparentImage),
             imageErrorBuilder:
                 (BuildContext context, Object object, StackTrace trace) =>
@@ -385,7 +384,7 @@ class _StudentHomePageState extends State<StudentHomePage> {
 
   void _openDrawer() => _scaffoldKey.currentState.openDrawer();
 
-  void _goToAttendanceDetail() => Get.to(AttendanceDetailPage());
+  void _goToAttendanceDetail() => Get.to(() => AttendanceDetailPage());
   void _onDateSelected(DateTime dateTime) => DateTime.now();
 }
 

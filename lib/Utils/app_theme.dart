@@ -114,7 +114,7 @@ class AppTheme {
       );
 
   static InputDecorationTheme _inputDecorationTheme() => InputDecorationTheme(
-        fillColor: Colors.grey[200],
+        fillColor: Colors.white,
         filled: true,
         errorStyle: TextStyle(
           color: _errorColor,
@@ -123,14 +123,23 @@ class AppTheme {
         ),
         border: OutlineInputBorder(
           borderSide: BorderSide.none,
-          borderRadius: BorderRadius.circular(6),
+          borderRadius: BorderRadius.circular(30),
         ),
-        focusedBorder: UnderlineInputBorder(
-          borderSide: BorderSide(
-            color: primaryColor,
-            width: 3,
-          ),
-          borderRadius: BorderRadius.circular(6),
+        focusedBorder: OutlineInputBorder(
+          borderSide: BorderSide(color: Colors.transparent),
+          borderRadius: BorderRadius.circular(30),
+        ),
+        enabledBorder: OutlineInputBorder(
+          borderSide: BorderSide(color: Colors.transparent),
+          borderRadius: BorderRadius.circular(30),
+        ),
+        focusedErrorBorder: OutlineInputBorder(
+          borderSide: BorderSide(color: Colors.transparent),
+          borderRadius: BorderRadius.circular(30),
+        ),
+        errorBorder: OutlineInputBorder(
+          borderSide: BorderSide(color: Colors.transparent),
+          borderRadius: BorderRadius.circular(30),
         ),
         labelStyle: TextStyle(
           color: Colors.grey[600],
