@@ -121,7 +121,8 @@ class SignInPage extends StatelessWidget {
                   padding: EdgeInsets.symmetric(
                     horizontal: sizeConfig.width(.09),
                   ),
-                  borderRadius: 30,
+                  borderRadius: 10,
+                  elevation: 10,
                 ),
               ],
             ),

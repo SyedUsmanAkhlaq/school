@@ -30,11 +30,9 @@ class _DateSelectionBarState extends State<DateSelectionBar> {
   void initState() {
     _dates = List.generate(
       14,
-      (index) {
-        return _selectedDateTime.add(
-          Duration(days: index),
-        );
-      },
+      (index) => _selectedDateTime.add(
+        Duration(days: index),
+      ),
     );
     super.initState();
   }

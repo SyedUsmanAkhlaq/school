@@ -12,5 +12,7 @@ class School extends StatelessWidget {
   Widget build(BuildContext context) => GetMaterialApp(
         home: SplashScreenPage(),
         theme: AppTheme.data(),
+        darkTheme: ThemeData.dark(),
+        themeMode: ThemeMode.system,
       );
 }

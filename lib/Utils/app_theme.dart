@@ -16,7 +16,7 @@ class AppTheme {
         inputDecorationTheme: _inputDecorationTheme(),
         popupMenuTheme: _popUpMenuThemeData(),
         scaffoldBackgroundColor: Color(0xFFf6f5f5),
-        backgroundColor: Colors.white,
+        backgroundColor: Colors.white70,
         errorColor: _errorColor,
         cardColor: Color(0xFFF5F7F9),
         splashColor: Colors.blueGrey[100].withOpacity(.05),
@@ -123,23 +123,23 @@ class AppTheme {
         ),
         border: OutlineInputBorder(
           borderSide: BorderSide.none,
-          borderRadius: BorderRadius.circular(30),
+          borderRadius: BorderRadius.circular(10),
         ),
         focusedBorder: OutlineInputBorder(
           borderSide: BorderSide(color: Colors.transparent),
-          borderRadius: BorderRadius.circular(30),
+          borderRadius: BorderRadius.circular(10),
         ),
         enabledBorder: OutlineInputBorder(
           borderSide: BorderSide(color: Colors.transparent),
-          borderRadius: BorderRadius.circular(30),
+          borderRadius: BorderRadius.circular(10),
         ),
         focusedErrorBorder: OutlineInputBorder(
           borderSide: BorderSide(color: Colors.transparent),
-          borderRadius: BorderRadius.circular(30),
+          borderRadius: BorderRadius.circular(10),
         ),
         errorBorder: OutlineInputBorder(
           borderSide: BorderSide(color: Colors.transparent),
-          borderRadius: BorderRadius.circular(30),
+          borderRadius: BorderRadius.circular(10),
         ),
         labelStyle: TextStyle(
           color: Colors.grey[600],

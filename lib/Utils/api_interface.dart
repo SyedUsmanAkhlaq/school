@@ -215,4 +215,115 @@ class APIInterface {
       return false;
     }
   }
+
+  static Future<List<Diary>> studentDiary(String studentID, String date) async {
+    try {
+      var url = "$baseAPI/user/homework?userID=$studentID&date=2021-03-01";
+      print(url);
+      Response response = await _dio.get(
+        url,
+        options: Options(
+          headers: {
+            'Authorization': 'Bearer $authToken',
+          },
+        ),
+      );
+      if (response.statusCode == 200) {
+        List<Diary> diary = [];
+        response.data['homework']?.forEach((element) {
+          diary.add(Diary.fromJSON(element));
+        });
+        print(diary.length);
+        print(diary.first.subjectName);
+        return diary;
+      } else
+        return null;
+    } catch (e, s) {
+      List<Diary> diary;
+      print("API Interface: Student Diary: $e: $s");
+      return diary;
+    }
+  }
+
+  static Future<StudentEvents> events(String date) async {
+    try {
+      var url = "$baseAPI/user/events?date=2021-03-23";
+      print(url);
+      Response response = await _dio.get(
+        url,
+        options: Options(
+          headers: {
+            'Authorization': 'Bearer $authToken',
+          },
+        ),
+      );
+      if (response.statusCode == 200) {
+        StudentEvents _events = StudentEvents.fromJSON(response.data['events']);
+        print(_events.imagePath);
+        return _events;
+      } else
+        return null;
+    } catch (e, s) {
+      print("API Interface: Student Events: $e: $s");
+      return null;
+    }
+  }
+
+  static Future<List<ExamSchedule>> examSchedule(
+      String classID, String sectionID) async {
+    try {
+      var url = "$baseAPI/user/examSchedule?classID=4&sectionID=1";
+      print(url);
+      Response response = await _dio.get(
+        url,
+        options: Options(
+          headers: {
+            'Authorization': 'Bearer $authToken',
+          },
+        ),
+      );
+      if (response.statusCode == 200) {
+        List<ExamSchedule> examSchedule = [];
+        response.data['exams']?.forEach((element) {
+          examSchedule.add(ExamSchedule.fromJSON(element));
+        });
+        print(examSchedule.length);
+        return examSchedule;
+      } else
+        return null;
+    } catch (e, s) {
+      List<ExamSchedule> examSchedule;
+      print("API Interface: Student Diary: $e: $s");
+      return examSchedule;
+    }
+  }
+
+  static void downloadFile(String url, String path) async {
+    try {
+      Response response = await _dio.get(
+        url,
+        onReceiveProgress: showDownloadProgress,
+        //Received data with List<int>
+        options: Options(
+            responseType: ResponseType.bytes,
+            followRedirects: false,
+            validateStatus: (status) {
+              return status < 500;
+            }),
+      );
+      print(response.headers);
+      File file = File(path);
+      var raf = file.openSync(mode: FileMode.write);
+      raf.writeFromSync(response.data);
+      await raf.close();
+    } catch (e) {
+      print(e);
+    }
+  }
+
+  static void showDownloadProgress(received, total) {
+    if (total != -1) {
+      print((received / total * 100).toStringAsFixed(0) + "%");
+    }
+  }
 }

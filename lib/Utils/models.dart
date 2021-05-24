@@ -191,3 +191,133 @@ class Voucher {
         this.discount = json['type_discount'],
         this.balance = json['balance'];
 }
+
+class Diary {
+  String id;
+  String classID;
+  String sectionID;
+  String sessionID;
+  String subjectID;
+  String homeworkDate;
+  String submissionDate;
+  String description;
+  String createdBy;
+  String createdDate;
+  String status;
+  String smsNotification;
+  String scheduleDate;
+  String document;
+  String evaluatedBy;
+  String evaluationDate;
+  String branchID;
+  String subjectName;
+  String className;
+  String sectionName;
+  String creatorName;
+  String documentPath;
+
+  Diary.fromJSON(Map json)
+      : this.id = json['id'],
+        this.classID = json['class_id'],
+        this.sectionID = json['section_id'],
+        this.sessionID = json['session_id'],
+        this.subjectID = json['subject_id'],
+        this.homeworkDate = json['date_of_homework'],
+        this.submissionDate = json['date_of_submission'],
+        this.description = json['description'],
+        this.createdBy = json['created_by'],
+        this.createdDate = json['created_date'],
+        this.status = json['status'],
+        this.smsNotification = json['sms_notification'],
+        this.scheduleDate = json['schedule_date'],
+        this.document = json['document'],
+        this.evaluationDate = json['evaluation_date'],
+        this.evaluatedBy = json['evaluated_by'],
+        this.branchID = json['branch_id'],
+        this.subjectName = json['subject_name'],
+        this.className = json['class_name'],
+        this.sectionName = json['section_name'],
+        this.creatorName = json['creator_name'],
+        this.documentPath = json['document_path'];
+}
+
+class StudentEvents {
+  String id;
+  String title;
+  String remark;
+  String status;
+  String type;
+  String audition;
+  String selectedList;
+  String startDate;
+  String endDate;
+  String image;
+  String createdBy;
+  String createdAt;
+  String updatedAt;
+  String branchId;
+  String showWeb;
+  String imagePath;
+
+  StudentEvents.fromJSON(Map json)
+      : this.id = json['id'],
+        this.title = json['title'],
+        this.remark = json['remark'],
+        this.status = json['status'],
+        this.type = json['type'],
+        this.audition = json['audition'],
+        this.selectedList = json['selected_list'],
+        this.startDate = json['start_date'],
+        this.endDate = json['end_date'],
+        this.image = json['image'],
+        this.createdBy = json['created_by'],
+        this.createdAt = json['created_at'],
+        this.updatedAt = json['updated_at'],
+        this.branchId = json['branch_id'],
+        this.showWeb = json['show_web'],
+        this.imagePath = json['image_path'];
+}
+
+class ExamSchedule {
+  String id;
+  String examId;
+  String classId;
+  String sectionId;
+  String subjectId;
+  String timeStart;
+  String timeEnd;
+  String hallId;
+  String examDate;
+  String branchId;
+  String sessionId;
+  String createdAt;
+  String updatedAt;
+  String branchName;
+  String fullMark;
+  String passMark;
+  String examName;
+  String className;
+  String sectionName;
+  String hallName;
+
+  ExamSchedule.fromJSON(Map json)
+      : this.id = json['id'],
+        this.examId = json['exam_id'],
+        this.classId = json['class_id'],
+        this.sectionId = json['section_id'],
+        this.subjectId = json['subject_id'],
+        this.timeStart = json['time_start'],
+        this.timeEnd = json['time_end'],
+        this.hallId = json['hall_id'],
+        this.examDate = json['exam_date'],
+        this.branchId = json['branch_id'],
+        this.sessionId = json['session_id'],
+        this.createdAt = json['created_at'],
+        this.updatedAt = json['updated_at'],
+        this.branchName = json['branch_name'],
+        this.fullMark = json['full_mar'],
+        this.passMark = json['pass_mark'],
+        this.examName = json['exam_name'],
+        this.sectionName = json['section_name'],
+        this.hallName = json['hall_name'];
+}

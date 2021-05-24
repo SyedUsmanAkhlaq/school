@@ -105,11 +105,10 @@ class ChildrenListItem extends StatelessWidget {
           ],
         ),
       );
-  void _goToDetailPage() {
-    print(children.childID);
+
+  void _goToDetailPage() async {
     Get.find<ChildrenController>().selectedChildren = children;
-    print(Get.find<ChildrenController>().selectedChildren.childID);
-    Get.find<ChildrenController>().loadChildData(children.childID);
+    await Get.find<ChildrenController>().loadChildData(children.childID);
     Get.to(
       () => StudentHomePage(
         children: children,

@@ -4,7 +4,11 @@ import 'package:get/get.dart';
 import 'package:school/Controllers/attendance_controller.dart';
 import 'package:school/Controllers/authentication_controller.dart';
 import 'package:school/Controllers/children_controller.dart';
+import 'package:school/Controllers/diary_controller.dart';
+import 'package:school/Controllers/event_controller.dart';
+import 'package:school/Controllers/exam_schedule_controller.dart';
 import 'package:school/Controllers/leave_controller.dart';
+import 'package:school/Controllers/theme_controller.dart';
 import 'package:school/Controllers/voucher_controller.dart';
 import 'package:school/Pages/sign_in_page.dart';
 import 'package:school/Utils/global.dart';
@@ -19,11 +23,15 @@ class _SplashScreenPageState extends State<SplashScreenPage> {
   @override
   void initState() {
     /// Initializing Controllers
-    Get.put<ChildrenController>(ChildrenController());
-    Get.put<AttendanceController>(AttendanceController());
-    Get.put<VoucherController>(VoucherController());
-    Get.put<LeaveController>(LeaveController());
     Get.put<AuthenticationController>(AuthenticationController());
+    Get.put<ExamScheduleController>(ExamScheduleController());
+    Get.put<AttendanceController>(AttendanceController());
+    Get.lazyPut<ThemeController>(() => ThemeController());
+    Get.put<ChildrenController>(ChildrenController());
+    Get.put<VoucherController>(VoucherController());
+    Get.put<DiaryController>(DiaryController());
+    Get.put<LeaveController>(LeaveController());
+    Get.put<EventController>(EventController());
 
     Future.delayed(
       Duration(seconds: 4),

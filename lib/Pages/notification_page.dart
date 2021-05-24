@@ -9,14 +9,12 @@ class NotificationPage extends StatelessWidget {
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      key: _scaffoldKey,
-      appBar: _appBar(context),
-      drawer: _drawer(),
-      body: _body(),
-    );
-  }
+  Widget build(BuildContext context) => Scaffold(
+        key: _scaffoldKey,
+        appBar: _appBar(context),
+        drawer: _drawer(),
+        body: _body(context),
+      );
 
   _appBar(BuildContext context) => AppBar(
         title: Text(
@@ -44,9 +42,12 @@ class NotificationPage extends StatelessWidget {
 
   _drawer() => CustomDrawer();
 
-  _body() => Container(
+  _body(BuildContext context) => Container(
         child: Center(
-          child: Text('Notification Page'),
+          child: Text(
+            'No Notification Available',
+            style: Theme.of(context).textTheme.subtitle1,
+          ),
         ),
       );
 

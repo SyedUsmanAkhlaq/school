@@ -3,7 +3,11 @@ import 'package:flutter/rendering.dart';
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:school/Controllers/attendance_controller.dart';
+import 'package:school/Controllers/diary_controller.dart';
+import 'package:school/Controllers/event_controller.dart';
+import 'package:school/Controllers/exam_schedule_controller.dart';
 import 'package:school/Pages/attendance_detail_page.dart';
+import 'package:school/Pages/diary_detail_page.dart';
 import 'package:school/Utils/constants.dart';
 import 'package:school/Utils/global.dart';
 import 'package:school/Utils/models.dart';
@@ -35,19 +39,23 @@ class _StudentHomePageState extends State<StudentHomePage> {
 
   @override
   void initState() {
+    String date =
+        '${DateTime.now().year}-${DateTime.now().month}-${DateTime.now().day}';
+    print(date);
     Get.find<AttendanceController>().loadAttendance(widget.children.childID);
+    Get.find<DiaryController>().loadData(date, widget.children.childID);
+    Get.find<EventController>().loadData(date);
+    Get.find<ExamScheduleController>().loadData(child.classID, child.sectionID);
     super.initState();
   }
 
   @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      key: _scaffoldKey,
-      appBar: _appBar(context),
-      drawer: _drawer(),
-      body: _body(context),
-    );
-  }
+  Widget build(BuildContext context) => Scaffold(
+        key: _scaffoldKey,
+        appBar: _appBar(context),
+        drawer: _drawer(),
+        body: _body(context),
+      );
 
   _appBar(BuildContext context) => AppBar(
         title: Text(
@@ -190,7 +198,10 @@ class _StudentHomePageState extends State<StudentHomePage> {
               SizedBox(
                 height: sizeConfig.height(.04),
               ),
-              _examSchedule()
+              _examSchedule(),
+              SizedBox(
+                height: sizeConfig.height(.04) + sizeConfig.safeArea.bottom,
+              ),
             ],
           ),
         ),
@@ -299,93 +310,123 @@ class _StudentHomePageState extends State<StudentHomePage> {
             SizedBox(
               height: sizeConfig.height(.01),
             ),
-            HomeWorkListTile()
-          ],
-        ),
-      );
-
-  _events() => Container(
-        margin: EdgeInsets.symmetric(
-          horizontal: sizeConfig.width(.03),
-        ),
-        decoration: BoxDecoration(
-          color: Colors.white,
-        ),
-        child: Column(
-          children: [
-            Container(
-              margin: EdgeInsets.symmetric(
-                horizontal: sizeConfig.width(.03),
-                vertical: sizeConfig.height(.01),
-              ),
-              child: Row(
-                children: [
-                  Text(
-                    'Events',
-                    style: Theme.of(context).textTheme.subtitle1.copyWith(
-                          fontSize: 25,
-                        ),
-                  ),
-                ],
-              ),
-            ),
-            DateSelectionBar(onDateSelected: _onDateSelected),
-            SizedBox(
-              height: sizeConfig.height(.01),
-            ),
-            Text(
-              'No Event Available',
-              style: Theme.of(context).textTheme.caption,
-            ),
-            SizedBox(
-              height: sizeConfig.height(.01),
-            ),
-          ],
-        ),
-      );
-
-  _examSchedule() => Container(
-        height: sizeConfig.height(.25),
-        margin: EdgeInsets.symmetric(
-          horizontal: sizeConfig.width(.03),
-        ),
-        decoration: BoxDecoration(
-          color: Colors.white,
-        ),
-        child: Column(
-          children: [
-            Container(
-              alignment: Alignment.centerLeft,
-              margin: EdgeInsets.only(
-                top: sizeConfig.height(.03),
-                left: sizeConfig.width(.03),
-              ),
-              child: Text(
-                'Exam Schedule',
-                style: Theme.of(context).textTheme.subtitle1.copyWith(
-                      fontSize: 25,
+            HomeWorkListTile(),
+            GetBuilder<DiaryController>(
+              builder: (value) => Visibility(
+                visible: value.diary == null ? false : true,
+                child: Align(
+                  alignment: Alignment.topRight,
+                  child: IconButton(
+                    icon: Icon(
+                      Icons.chevron_right,
                     ),
-              ),
-            ),
-            SizedBox(
-              height: sizeConfig.height(.01),
-            ),
-            Expanded(
-              child: ListView.builder(
-                scrollDirection: Axis.horizontal,
-                itemBuilder: (BuildContext context, int index) =>
-                    ExamListTile(),
-                itemCount: 10,
+                    onPressed: () => Get.to(
+                      () => DiaryDetailPage(),
+                    ),
+                  ),
+                ),
               ),
             ),
           ],
+        ),
+      );
+
+  _events() => GetBuilder<EventController>(
+        builder: (value) => Container(
+          margin: EdgeInsets.symmetric(
+            horizontal: sizeConfig.width(.03),
+          ),
+          decoration: BoxDecoration(
+            color: Colors.white,
+          ),
+          child: Column(
+            children: [
+              Container(
+                margin: EdgeInsets.symmetric(
+                  horizontal: sizeConfig.width(.03),
+                  vertical: sizeConfig.height(.01),
+                ),
+                child: Row(
+                  children: [
+                    Text(
+                      'Events',
+                      style: Theme.of(context).textTheme.subtitle1.copyWith(
+                            fontSize: 25,
+                          ),
+                    ),
+                  ],
+                ),
+              ),
+              DateSelectionBar(onDateSelected: _onDateSelected),
+              SizedBox(
+                height: sizeConfig.height(.01),
+              ),
+              Text(
+                value.events.title,
+                style: Theme.of(context).textTheme.caption,
+              ),
+              SizedBox(
+                height: sizeConfig.height(.01),
+              ),
+            ],
+          ),
+        ),
+      );
+
+  _examSchedule() => GetBuilder<ExamScheduleController>(
+        builder: (value) => Container(
+          height: sizeConfig.height(.25),
+          margin: EdgeInsets.symmetric(
+            horizontal: sizeConfig.width(.03),
+          ),
+          decoration: BoxDecoration(
+            color: Colors.white,
+          ),
+          child: Column(
+            children: [
+              Container(
+                alignment: Alignment.centerLeft,
+                margin: EdgeInsets.only(
+                  top: sizeConfig.height(.03),
+                  left: sizeConfig.width(.03),
+                ),
+                child: Text(
+                  'Exam Schedule',
+                  style: Theme.of(context).textTheme.subtitle1.copyWith(
+                        fontSize: 25,
+                      ),
+                ),
+              ),
+              SizedBox(
+                height: sizeConfig.height(.01),
+              ),
+              Expanded(
+                child: ListView.builder(
+                  scrollDirection: Axis.horizontal,
+                  itemBuilder: (BuildContext context, int index) =>
+                      ExamListTile(
+                    examSchedule: value.events[index],
+                  ),
+                  itemCount: value.events.length,
+                ),
+              ),
+            ],
+          ),
         ),
       );
 
   void _openDrawer() => _scaffoldKey.currentState.openDrawer();
 
   void _goToAttendanceDetail() => Get.to(() => AttendanceDetailPage());
-  void _onDateSelected(DateTime dateTime) => DateTime.now();
+  void _onDateSelected(DateTime dateTime) => _loadData(dateTime);
+
+  void _loadData(DateTime dateTime) {
+    String convertedDate =
+        "${dateTime.year.toString()}-${dateTime.month.toString().padLeft(2, '0')}-${dateTime.day.toString().padLeft(2, '0')}";
+    print('This is date $convertedDate');
+    Get.find<DiaryController>()
+        .loadData(convertedDate, widget.children.childID);
+  }
 }
 
 class _SalesData {
@@ -396,89 +437,91 @@ class _SalesData {
 }
 
 class ExamListTile extends StatelessWidget {
+  final ExamSchedule examSchedule;
+
+  const ExamListTile({Key key, this.examSchedule}) : super(key: key);
+
   @override
-  Widget build(BuildContext context) {
-    return Container(
-      margin: EdgeInsets.symmetric(
-        horizontal: sizeConfig.width(.03),
-        vertical: sizeConfig.height(.02),
-      ),
-      padding: EdgeInsets.symmetric(
-        horizontal: sizeConfig.width(.02),
-        vertical: sizeConfig.height(.01),
-      ),
-      decoration: BoxDecoration(
-        color: Theme.of(context).primaryColor.withOpacity(.3),
-        borderRadius: BorderRadius.circular(10),
-      ),
-      child: Column(
-        children: [
-          Row(
-            mainAxisSize: MainAxisSize.min,
-            textBaseline: TextBaseline.alphabetic,
-            crossAxisAlignment: CrossAxisAlignment.baseline,
-            children: [
-              Text(
-                'English',
-                style: Theme.of(context).textTheme.subtitle2.copyWith(
-                      color: Colors.grey,
-                      fontSize: 25,
-                    ),
-              ),
-              SizedBox(
-                width: sizeConfig.width(.02),
-              ),
-              Text(
-                'Mid Term',
-                style: Theme.of(context).textTheme.subtitle2.copyWith(
-                      color: Colors.grey,
-                    ),
-              )
-            ],
-          ),
-          Spacer(),
-          Row(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              Container(
-                padding: EdgeInsets.symmetric(
-                  horizontal: sizeConfig.width(.04),
-                  vertical: sizeConfig.height(.01),
-                ),
-                decoration: BoxDecoration(
-                  color: Theme.of(context).primaryColor,
-                  borderRadius: BorderRadius.circular(5),
-                ),
-                child: Text(
-                  '22nd Sep, 2021',
-                  style: Theme.of(context).textTheme.button,
-                ),
-              ),
-              SizedBox(
-                width: sizeConfig.width(.02),
-              ),
-              Container(
-                padding: EdgeInsets.symmetric(
-                  horizontal: sizeConfig.width(.04),
-                  vertical: sizeConfig.height(.01),
-                ),
-                decoration: BoxDecoration(
-                  border: Border.all(
-                    color: Theme.of(context).primaryColor,
-                  ),
-                  borderRadius: BorderRadius.circular(5),
-                ),
-                child: Text(
-                  '22nd Sep, 2021',
-                  style: Theme.of(context).textTheme.button.copyWith(
-                        color: Theme.of(context).primaryColor,
+  Widget build(BuildContext context) => Container(
+        margin: EdgeInsets.symmetric(
+          horizontal: sizeConfig.width(.03),
+          vertical: sizeConfig.height(.02),
+        ),
+        padding: EdgeInsets.symmetric(
+          horizontal: sizeConfig.width(.02),
+          vertical: sizeConfig.height(.01),
+        ),
+        decoration: BoxDecoration(
+          color: Theme.of(context).primaryColor.withOpacity(.3),
+          borderRadius: BorderRadius.circular(10),
+        ),
+        child: Column(
+          children: [
+            Row(
+              mainAxisSize: MainAxisSize.min,
+              textBaseline: TextBaseline.alphabetic,
+              crossAxisAlignment: CrossAxisAlignment.baseline,
+              children: [
+                Text(
+                  examSchedule?.examName,
+                  style: Theme.of(context).textTheme.subtitle2.copyWith(
+                        color: Colors.grey,
+                        fontSize: 25,
                       ),
                 ),
-              )
-            ],
-          )
-        ],
-      ),
-    );
-  }
+                SizedBox(
+                  width: sizeConfig.width(.02),
+                ),
+                // Text(
+                //   'Mid Term',
+                //   style: Theme.of(context).textTheme.subtitle2.copyWith(
+                //         color: Colors.grey,
+                //       ),
+                // )
+              ],
+            ),
+            Spacer(),
+            Row(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Container(
+                  padding: EdgeInsets.symmetric(
+                    horizontal: sizeConfig.width(.04),
+                    vertical: sizeConfig.height(.01),
+                  ),
+                  decoration: BoxDecoration(
+                    color: Theme.of(context).primaryColor,
+                    borderRadius: BorderRadius.circular(5),
+                  ),
+                  child: Text(
+                    examSchedule.examDate,
+                    style: Theme.of(context).textTheme.button,
+                  ),
+                ),
+                SizedBox(
+                  width: sizeConfig.width(.02),
+                ),
+                Container(
+                  padding: EdgeInsets.symmetric(
+                    horizontal: sizeConfig.width(.04),
+                    vertical: sizeConfig.height(.01),
+                  ),
+                  decoration: BoxDecoration(
+                    border: Border.all(
+                      color: Theme.of(context).primaryColor,
+                    ),
+                    borderRadius: BorderRadius.circular(5),
+                  ),
+                  child: Text(
+                    '${examSchedule.timeStart}-${examSchedule.timeEnd}',
+                    style: Theme.of(context).textTheme.button.copyWith(
+                          color: Theme.of(context).primaryColor,
+                        ),
+                  ),
+                )
+              ],
+            )
+          ],
+        ),
+      );
 }
